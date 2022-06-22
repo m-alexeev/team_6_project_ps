@@ -1,6 +1,11 @@
 package com.example.walmartpathfinder.models
 
 class Store(name: String) {
-    private var section: MutableList<Section> = mutableListOf();
+    private var sections: MutableList<Section> = mutableListOf();
     private var storeName: String = name;
+
+    fun addSection(section: Section){
+        sections.add(section);
+    }
+
 }
