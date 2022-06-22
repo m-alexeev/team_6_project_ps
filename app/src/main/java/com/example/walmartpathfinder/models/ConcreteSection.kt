@@ -1,10 +1,11 @@
 package com.example.walmartpathfinder.models
 
-class ConcreteSection(name: String, parent: Section) : Section(name, parent) {
-    private var subsection: MutableList<Section> = mutableListOf<Section>();
+class ConcreteSection(name: String, parent: Section? = null) : Section(name, parent) {
+    var subsections: MutableList<Section> = mutableListOf<Section>();
 
-    fun addSubsection(subcategory: Section) {
-        subsection.add(subcategory);
+    fun addSubsection(subsection: Section) {
+        subsections.add(subsection);
+        subsection.setParent(this);
     }
 
     override fun generateList(shoppingList: MutableList<Item>): MutableList<Item> {

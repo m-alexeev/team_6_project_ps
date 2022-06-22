@@ -4,29 +4,30 @@ class Instantiator {
     companion object{
         fun createStoreStructure(): Store{
             val store = Store("Walmart");
-            val mainCategories = listOf<String>("Beverages", "Bakery", "Canned Foods", "Dairy", "Dry/Baking Goods", "Frozen Foods", "Meat", "Produce", "Cleaners", "Paper Goods", "Personal Care");
-            val subCategories = listOf<Collection<String>>(
-                listOf("Coffee / Tea", "Juice", "Soda"),
-                listOf("Breads", "Bagels", "Muffins"),
-                listOf("Vegetables", "Sauces", "Soup"),
-                listOf("Milk", "Cheese", "Eggs"),
-                listOf("Cereal", "Flour", "Pasta"),
-                listOf("Vegetables", "Meals", "Ice Cream"),
-                listOf("Poultry", "Beef", "Pork"),
-                listOf("Fruits", "Vegetables", "Organic"),
-                listOf("Detergent", "All Purpose", "Dishwasher Detergent"),
-                listOf("Paper Towels", "Toilet Paper", "Sandwich Bags"),
-                listOf("Shampoo", "Soap", "Shaving Cream"),
-                listOf("Fish", "Shrimp", "Crawfish")
+
+            val mainSections = listOf<String>("Dairy", "Produce", "Meat", "Frozen", "Bakery");
+            val subSections = listOf<Collection<String>>(
+                listOf("A1", "A2", "A3", "A4"),
+                listOf("B1", "B2", "B3"),
+                listOf("C1", "C2", "C3", "C4"),
+                listOf("D1", "D2"),
+                listOf()
             );
-            for ((index, value) in mainCategories.withIndex()){
-                val mainCat = ConcreteSection(value);
-                for (subCat in subCategories[index]){
-                    mainCat.addSubsection(ConcreteSection(subCat));
+
+            for ((index, value) in mainSections.withIndex()){
+                val mainSec = ConcreteSection(value);
+                store.section.addSubsection(mainSec)
+
+                for (subSec in subSections[index]){
+                    mainSec.addSubsection(ConcreteSection(subSec));
                 }
-                store.addSection(mainCat);
             }
             return store;
+        }
+        @JvmStatic
+        fun main(args: Array<String>) {
+            var walmart = createStoreStructure()
+            println((walmart.section.subsections[3] as ConcreteSection).subsections)
         }
     }
 }
