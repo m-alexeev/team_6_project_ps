@@ -22,7 +22,7 @@ class Instantiator {
             for ((index, value) in mainCategories.withIndex()){
                 val mainCat = ConcreteSection(value);
                 for (subCat in subCategories[index]){
-                    mainCat.addSubCategory(ConcreteSection(subCat));
+                    mainCat.addSubsection(ConcreteSection(subCat));
                 }
                 store.addSection(mainCat);
             }
