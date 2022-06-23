@@ -3,10 +3,15 @@ package com.example.walmartpathfinder.models
 class ConcreteSection(name: String, parent: Section? = null) : Section(name, parent) {
     private var subsections: MutableList<Section> = mutableListOf<Section>()
 
+
     /*Allows user to add subsections to subsections list*/
     fun addSubsection(subsection: Section) {
         subsections.add(subsection)
         subsection.setParent(this)
+    }
+
+    fun getSubsections(): MutableList<Section>{
+        return this.subsections
     }
 
     /* Check to see the item being checked is a descendant of the specific section */
