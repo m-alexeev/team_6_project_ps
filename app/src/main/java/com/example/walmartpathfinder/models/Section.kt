@@ -23,7 +23,7 @@ abstract class Section(
     }
 
     override fun toString(): String {
-        return this.name
+        return if (this.parent == null) (this.name) else (this.parent!!.name + "-" + this.name)
     }
 
 }
