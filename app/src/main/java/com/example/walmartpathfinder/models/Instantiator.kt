@@ -6,7 +6,32 @@ class Instantiator {
         var subSections = mutableListOf<Section>()
         var items = mutableListOf<Item>()
 
-        /* Store structure with sections and subsections*/
+
+        /**
+         * Creates an Item for a section in the indexed subsection
+         * Adds the created Item to the global var items list
+         */
+        fun createItemInSubsec(section: ConcreteSection, subSecIdx: Int, itemName: String) {
+            val item = Item(itemName, section.getSubsections()[subSecIdx])
+            (section.getSubsections()[subSecIdx] as ConcreteSection).addSubsection(item)
+            items.add(item)
+        }
+
+
+        /**
+         * Creates an Item for a section directly
+         * Adds the created Item to the global var items list
+         */
+        fun createItem(section: ConcreteSection, itemName: String) {
+            val item = Item(itemName, section)
+            section.addSubsection(item)
+            items.add(item)
+        }
+
+
+        /**
+         *  Store structure with sections and subsections
+         */
         fun createStoreStructure(): Store {
             val store = Store("Walmart")
 
@@ -18,7 +43,6 @@ class Instantiator {
                 listOf("D1", "D2"),
                 listOf()
             )
-
 
 
             /* Add all section names and subsections names to store */
@@ -34,54 +58,31 @@ class Instantiator {
                 }
             }
 
-            /**
-             * Creates an Item for a section in the indexed subsection.
-             * Adds the created Item to the global var items list
-             */
-            fun createItemInSubsec(section : ConcreteSection, subSecIdx : Int, itemName : String) {
-                val item = Item(itemName, section.getSubsections()[subSecIdx])
-                (section.getSubsections()[subSecIdx] as ConcreteSection).addSubsection(item)
-                items.add(item)
-            }
-
-
-            /**
-             * Creates an Item for a section directly
-             * Adds the created Item to the global var items list
-             */
-            fun createItem(section : ConcreteSection, itemName : String) {
-                val item = Item(itemName, section)
-                section.addSubsection(item)
-                items.add(item)
-            }
-
-
-
             /* Items in the Dairy section */
             val dairy = store.section.getSubsections()[0] as ConcreteSection
-            createItemInSubsec(dairy,0,"Milk")
-            createItemInSubsec(dairy,1,"Buttermilk")
-            createItemInSubsec(dairy,2,"Yogurt")
-            createItemInSubsec(dairy,3,"Butter")
+            createItemInSubsec(dairy, 0, "Milk")
+            createItemInSubsec(dairy, 1, "Buttermilk")
+            createItemInSubsec(dairy, 2, "Yogurt")
+            createItemInSubsec(dairy, 3, "Butter")
 
             /* Items in the Produce section */
             val produce = store.section.getSubsections()[1] as ConcreteSection
-            createItemInSubsec(produce,0,"Cucumbers")
-            createItemInSubsec(produce,1,"Onions")
-            createItemInSubsec(produce,2,"Tomatoes")
+            createItemInSubsec(produce, 0, "Cucumbers")
+            createItemInSubsec(produce, 1, "Onions")
+            createItemInSubsec(produce, 2, "Tomatoes")
 
             /* Items in the Poultry section */
             val meat = store.section.getSubsections()[2] as ConcreteSection
-            createItemInSubsec(meat,0,"Pork")
-            createItemInSubsec(meat,1,"Beef")
-            createItemInSubsec(meat,2,"Pork")
-            createItemInSubsec(meat,3,"Ground meat")
+            createItemInSubsec(meat, 0, "Pork")
+            createItemInSubsec(meat, 1, "Beef")
+            createItemInSubsec(meat, 2, "Pork")
+            createItemInSubsec(meat, 3, "Ground meat")
 
             /* Items in the Frozen Section */
             val frozen = store.section.getSubsections()[3] as ConcreteSection
-            createItemInSubsec(frozen,0,"Ice Cream")
-            createItemInSubsec(frozen,1,"Waffles")
-            createItemInSubsec(frozen,1,"Pizza")
+            createItemInSubsec(frozen, 0, "Ice Cream")
+            createItemInSubsec(frozen, 1, "Waffles")
+            createItemInSubsec(frozen, 1, "Pizza")
 
             /* Items in the Bakery Section */
             val bakery = store.section.getSubsections()[4] as ConcreteSection
