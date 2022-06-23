@@ -6,6 +6,7 @@ abstract class Section(
 ) {
     abstract fun generateList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>>
 
+    /* Check to see if product is the Descendant of the section and subsection */
     fun isDescendentOf(section: Section): Boolean {
         var cur = this
         while (cur.parent != null) {

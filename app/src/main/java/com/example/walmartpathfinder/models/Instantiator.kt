@@ -6,6 +6,7 @@ class Instantiator {
         var subSections = mutableListOf<Section>()
         var items = mutableListOf<Item>()
 
+        /* Store structure with sections and subsections*/
         fun createStoreStructure(): Store {
             val store = Store("Walmart")
 
@@ -20,6 +21,7 @@ class Instantiator {
 
             TODO("Set up items")
 
+            /* Add all section names and subsections names to store */
             for ((index, mainSecName) in mainSecNames.withIndex()) {
                 val mainSec = ConcreteSection(mainSecName)
                 store.section.addSubsection(mainSec)
