@@ -4,7 +4,7 @@ abstract class Section(
     private var name: String,
     private var parent: Section?,
 ) {
-    abstract fun generateList(unorderedList: MutableList<Item>): MutableList<Item>
+    abstract fun generateList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>>
 
     fun isDescendentOf(section: Section): Boolean {
         var cur = this
@@ -18,7 +18,7 @@ abstract class Section(
     }
 
     fun setParent(parent : Section) {
-        this.parent = parent;
+        this.parent = parent
     }
 
     override fun toString(): String {
