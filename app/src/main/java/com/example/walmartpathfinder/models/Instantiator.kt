@@ -63,6 +63,7 @@ class Instantiator {
             createItemInSubsec(dairy, 0, "Milk")
             createItemInSubsec(dairy, 1, "Buttermilk")
             createItemInSubsec(dairy, 2, "Yogurt")
+            createItemInSubsec(dairy, 2, "Kefir")
             createItemInSubsec(dairy, 3, "Butter")
 
             /* Items in the Produce section */
@@ -96,11 +97,24 @@ class Instantiator {
         @JvmStatic
         fun main(args: Array<String>) {
             var walmart = createStoreStructure()
+            /*
             println(mainSections)
             println(subSections)
             println(items)
+             */
 
-            // TODO("demo use of generateList() on an item list")
+            // demo use of sortItemList() on an item list
+            //val itemIdx = listOf<Int>(16,5,12,3,1,9,10)
+            val itemIdx = listOf<Int>(3,2,1)
+
+            var itemList = mutableListOf<Item>()
+            for (idx in itemIdx) {
+                itemList.add(items[idx])
+            }
+            println(itemList)
+
+            var pair = walmart.section.sortItemList(itemList)
+            println(pair.first)
         }
     }
 }

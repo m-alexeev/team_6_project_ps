@@ -4,7 +4,7 @@ abstract class Section(
     private var name: String,
     private var parent: Section?,
 ) {
-    abstract fun generateList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>>
+    abstract fun sortItemList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>>
 
     /* Check to see if product is the Descendant of the section and subsection */
     fun isDescendentOf(section: Section): Boolean {

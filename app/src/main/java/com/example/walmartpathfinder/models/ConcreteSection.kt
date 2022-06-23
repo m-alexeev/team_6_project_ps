@@ -15,11 +15,11 @@ class ConcreteSection(name: String, parent: Section? = null) : Section(name, par
     }
 
     /* Check to see the item being checked is a descendant of the specific section */
-    override fun generateList(shoppingList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>> {
+    override fun sortItemList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>> {
         var unordered = mutableListOf<Item>()
         var ordered = mutableListOf<Item>()
 
-        for (item in shoppingList) {
+        for (item in unorderedList) {
             if (item.isDescendentOf(this)) {
                 ordered.add(item)
             } else {
@@ -32,7 +32,7 @@ class ConcreteSection(name: String, parent: Section? = null) : Section(name, par
         var subsectionUnordered = ordered
         ordered = mutableListOf()
         for (subsection in this.subsections) {
-            var listPair = subsection.generateList(subsectionUnordered)
+            var listPair = subsection.sortItemList(subsectionUnordered)
             ordered.addAll(listPair.first)
             subsectionUnordered = listPair.second
         }
