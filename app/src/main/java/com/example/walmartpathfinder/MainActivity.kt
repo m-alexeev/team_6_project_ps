@@ -10,31 +10,40 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walmartpathfinder.databinding.ActivityMainBinding
+import com.example.walmartpathfinder.models.Instantiator
+import com.example.walmartpathfinder.models.Item
+import com.example.walmartpathfinder.models.ShoppingList
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var shoppingListAdapter: ShoppingListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        Instantiator.createStoreStructure()
+        shoppingListAdapter = ShoppingListAdapter(Instantiator.items)
+
+        item_list.adapter = shoppingListAdapter
+        item_list.layoutManager = LinearLayoutManager(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
+        /*
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAnchorView(R.id.fab)
-                    .setAction("Action", null).show()
-        }
+        */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,10 +61,14 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
+    /*
     override fun onSupportNavigateUp(): Boolean {
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
+                return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+
+
     }
+    */
 }

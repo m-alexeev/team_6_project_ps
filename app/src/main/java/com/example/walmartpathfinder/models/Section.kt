@@ -6,6 +6,10 @@ abstract class Section(
 ) {
     abstract fun sortItemList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>>
 
+    fun getName(): String{
+        return name
+    }
+
     /* Check to see if product is the Descendant of the section and subsection */
     fun isDescendentOf(section: Section): Boolean {
         var cur = this
