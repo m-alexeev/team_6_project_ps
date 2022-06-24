@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="walmart_blue">#306fd4</color>
+    <color name="walmart_yellow">#f6c44a</color>
+    <color name="checkbox_grey">#efeeee</color>
+    <color name="checklist_text_grey">#5b5b5b</color>
+    <color name="checklist_divider_grey">#bcbcbc</color>
+
 </resources>
