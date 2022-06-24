@@ -115,6 +115,7 @@ class Instantiator {
 
             var pair = walmart.section.sortItemList(itemList)
             println(pair.first)
+
         }
     }
 }
