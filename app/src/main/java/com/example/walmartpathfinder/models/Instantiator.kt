@@ -48,7 +48,7 @@ class Instantiator {
             /* Add all section names and subsections names to store */
             for ((index, mainSecName) in mainSecNames.withIndex()) {
                 val mainSec = ConcreteSection(mainSecName)
-                store.section.addSubsection(mainSec)
+                store.rootSection.addSubsection(mainSec)
                 mainSections.add(mainSec)
 
                 for (subSecName in subSecNames[index]) {
@@ -59,7 +59,7 @@ class Instantiator {
             }
 
             /* Items in the Dairy section */
-            val dairy = store.section.getSubsections()[0] as ConcreteSection
+            val dairy = store.rootSection.getSubsections()[0] as ConcreteSection
             createItemInSubsec(dairy, 0, "Milk")
             createItemInSubsec(dairy, 1, "Buttermilk")
             createItemInSubsec(dairy, 2, "Yogurt")
@@ -67,26 +67,26 @@ class Instantiator {
             createItemInSubsec(dairy, 3, "Butter")
 
             /* Items in the Produce section */
-            val produce = store.section.getSubsections()[1] as ConcreteSection
+            val produce = store.rootSection.getSubsections()[1] as ConcreteSection
             createItemInSubsec(produce, 0, "Cucumbers")
             createItemInSubsec(produce, 1, "Onions")
             createItemInSubsec(produce, 2, "Tomatoes")
 
             /* Items in the Poultry section */
-            val meat = store.section.getSubsections()[2] as ConcreteSection
+            val meat = store.rootSection.getSubsections()[2] as ConcreteSection
             createItemInSubsec(meat, 0, "Pork")
             createItemInSubsec(meat, 1, "Beef")
             createItemInSubsec(meat, 2, "Pork")
             createItemInSubsec(meat, 3, "Ground meat")
 
             /* Items in the Frozen Section */
-            val frozen = store.section.getSubsections()[3] as ConcreteSection
+            val frozen = store.rootSection.getSubsections()[3] as ConcreteSection
             createItemInSubsec(frozen, 0, "Ice Cream")
             createItemInSubsec(frozen, 1, "Waffles")
             createItemInSubsec(frozen, 1, "Pizza")
 
             /* Items in the Bakery Section */
-            val bakery = store.section.getSubsections()[4] as ConcreteSection
+            val bakery = store.rootSection.getSubsections()[4] as ConcreteSection
             createItem(bakery, "Bread")
             createItem(bakery, "Cake")
             createItem(bakery, "Muffins")
@@ -113,7 +113,7 @@ class Instantiator {
             }
             println(itemList)
 
-            var pair = walmart.section.sortItemList(itemList)
+            var pair = walmart.rootSection.sortItemList(itemList)
             println(pair.first)
 
         }

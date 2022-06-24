@@ -10,17 +10,17 @@ class ConcreteSection(name: String, parent: Section? = null) : Section(name, par
         subsection.setParent(this)
     }
 
-    fun getSubsections(): MutableList<Section>{
+    fun getSubsections(): MutableList<Section> {
         return this.subsections
     }
 
     /* Check to see the item being checked is a descendant of the specific section */
-    override fun sortItemList(unorderedList: MutableList<Item>): Pair<MutableList<Item>,MutableList<Item>> {
+    override fun sortItemList(unorderedList: MutableList<Item>): Pair<MutableList<Item>, MutableList<Item>> {
         var unordered = mutableListOf<Item>()
         var ordered = mutableListOf<Item>()
 
         for (item in unorderedList) {
-            if (item.isDescendentOf(this)) {
+            if (item.isDescendantOf(this)) {
                 ordered.add(item)
             } else {
                 unordered.add(item)
@@ -28,7 +28,7 @@ class ConcreteSection(name: String, parent: Section? = null) : Section(name, par
 
         }
 
-    /* Add all items back to ordered and unordered list and return both lists */
+        /* Add all items back to ordered and unordered list and return both lists */
         var subsectionUnordered = ordered
         ordered = mutableListOf()
         for (subsection in this.subsections) {
@@ -37,7 +37,7 @@ class ConcreteSection(name: String, parent: Section? = null) : Section(name, par
             subsectionUnordered = listPair.second
         }
 
-        return Pair(ordered,unordered)
+        return Pair(ordered, unordered)
     }
 
 }
