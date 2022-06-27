@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         item_list.layoutManager = LinearLayoutManager(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
