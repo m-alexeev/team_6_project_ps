@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Team6",
+    "slug": "Team6",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
