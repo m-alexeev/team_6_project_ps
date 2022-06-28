@@ -59,7 +59,7 @@ class Instantiator{
         let meat = store.section.getSubsections()[2] as ConcreteSection
         this.createItemInSubsection(meat, 0, "Pork")
         this.createItemInSubsection(meat, 1, "Beef")
-        this.createItemInSubsection(meat, 2, "Pork")
+        this.createItemInSubsection(meat, 2, "Chicken")
         this.createItemInSubsection(meat, 3, "Ground meat")
 
         /* Items in the Frozen Section */
