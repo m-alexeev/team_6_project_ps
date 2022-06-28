@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
 		top: 50,
 		width:350,
 		maxHeight: 450,
+		backgroundColor: "white",
+		zIndex: 5,
 		position: 'absolute',
 		shadowColor: "grey",
 		shadowOffset: { width: 0, height: 5 },
