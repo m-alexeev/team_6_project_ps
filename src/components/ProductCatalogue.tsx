@@ -45,9 +45,9 @@ const ProductCatalogue: React.FC<Props> = () => {
 		const item = items.find(item => item.name === id)
 		if (item && !selectedItems.includes(item)){
 			const newSeletedItems = [...selectedItems, item];
-			const newSeletedItemsSorted = Instantiator.store?.section.sortItemList(newSeletedItems)[0];
-			if (newSeletedItemsSorted)
-				setSelectedItems(newSeletedItemsSorted);
+			// const newSeletedItemsSorted = Instantiator.store?.section.sortItemList(newSeletedItems)[0];
+			// if (newSeletedItemsSorted)
+				setSelectedItems(newSeletedItems);
 		}
 	}
 
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
 	topbar:{
 		flex: 1,
 		flexDirection: "row",
+		marginBottom: 50,
 	},
 	close: {
 		alignSelf: 'center',
@@ -126,8 +127,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	list: {
+		top: 50,
+		width:350,
 		maxHeight: 450,
-		zIndex: 10,
+		position: 'absolute',
 		shadowColor: "grey",
 		shadowOffset: { width: 0, height: 5 },
 		shadowOpacity: 0.75,
