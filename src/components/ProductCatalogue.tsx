@@ -1,12 +1,10 @@
 import { CheckboxEvent } from "expo-checkbox";
 import { FlatList } from "native-base";
-import { convertAbsoluteToRem } from "native-base/lib/typescript/theme/tools";
-import React, { useEffect, useState } from "react";
-import { GestureResponderEvent, SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Instantiator } from "../models/Instantiator";
 import { Item } from "../models/Item";
 import ItemSeparatorView from "./ItemSeparator";
-import ShoppingList from "./ShoppingList";
 import ShoppingListItem from "./ShoppingListItem";
 
 
@@ -37,8 +35,6 @@ const ProductCatalogue: React.FC<Props> = () => {
 		else {
 			setFilteredItems([...items]);
 		}
-		console.log(items);
-		console.log(Instantiator.items);
 		setSearch(query);
 	}
 
@@ -50,7 +46,8 @@ const ProductCatalogue: React.FC<Props> = () => {
 			if (newSeletedItemsSorted)
 				setSelectedItems(newSeletedItemsSorted);
 		}
-		setShowSearch(false)
+		searchFilterFunction("");
+		setShowSearch(false);
 	}
 
 
