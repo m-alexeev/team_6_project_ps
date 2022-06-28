@@ -1,5 +1,6 @@
 import { CheckboxEvent } from "expo-checkbox";
 import { FlatList } from "native-base";
+import { convertAbsoluteToRem } from "native-base/lib/typescript/theme/tools";
 import React, { useEffect, useState } from "react";
 import { GestureResponderEvent, SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Instantiator } from "../models/Instantiator";
@@ -45,9 +46,9 @@ const ProductCatalogue: React.FC<Props> = () => {
 		const item = items.find(item => item.name === id)
 		if (item && !selectedItems.includes(item)){
 			const newSeletedItems = [...selectedItems, item];
-			// const newSeletedItemsSorted = Instantiator.store?.section.sortItemList(newSeletedItems)[0];
-			// if (newSeletedItemsSorted)
-				setSelectedItems(newSeletedItems);
+			const newSeletedItemsSorted = Instantiator.store?.section.sortItemList(newSeletedItems)[0];
+			if (newSeletedItemsSorted)
+				setSelectedItems(newSeletedItemsSorted);
 		}
 	}
 
@@ -85,7 +86,7 @@ const ProductCatalogue: React.FC<Props> = () => {
 						keyExtractor={item => `${item.name}`}
 					/>
 				}
-
+				<Text style={styles.listHeader}>Your Shopping List</Text>
 				{/* Shopping List */}
 				<FlatList<Item>
 					data={selectedItems}
@@ -113,8 +114,14 @@ const styles = StyleSheet.create({
 	close: {
 		alignSelf: 'center',
 		marginStart: 5,
-		marginVertical: "auto",
-		color: "#306fd4"
+		color: "#306fd4",
+	},
+	listHeader:{
+		marginHorizontal: 20,
+		fontSize: 24,
+		fontWeight: "bold",
+		color: '#444',
+		borderBottomWidth: 0.5
 	},
 	textInputStyle: {
 		flexGrow: 1,
