@@ -1,7 +1,7 @@
-import { Container, Text, View } from "native-base";
+import { Text, View } from "native-base";
 import Checkbox, { CheckboxEvent } from "expo-checkbox";
 import React from "react";
-import { GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Item } from "../models/Item";
 
 interface Props {
