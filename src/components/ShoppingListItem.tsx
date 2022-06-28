@@ -1,27 +1,39 @@
-import { Text, View } from "native-base";
-import Checkbox from "expo-checkbox";
+import { Container, Text, View } from "native-base";
+import Checkbox, { CheckboxEvent } from "expo-checkbox";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
 import { Item } from "../models/Item";
 
 interface Props {
 	item: Item;
+	checkbox?: boolean;
+	handlePress: (id?: string) => void;
+	handlePressCheckbox: (event: CheckboxEvent) => void;
 }
 
-const ShoppingListItem: React.FC<Props> = (props) => {
-	const item = props.item;
+const ShoppingListItem: React.FC<Props> = ({ item, checkbox, handlePressCheckbox, handlePress }) => {
 	return (
-		<View style={styles.container}>
-			<View style={styles.checkboxContainer}>
-				<View style={styles.left}>
-					<Checkbox style={styles.checkbox} color={item.checked ? "#04D300DE" : "#EFEEEE"} value={item.checked}></Checkbox>
-					<Text style={styles.label}>{item.name}</Text>
-				</View>
-				<View>
-					<Text style={styles.parent}>{item.parent?.name ? `Aisle - ${item.parent?.name}` : ""}</Text>
+		<TouchableOpacity onPress={()=>handlePress(item.name)}>
+
+			<View style={styles.container}>
+				<View style={styles.checkboxContainer}>
+					<View style={styles.left}>
+						{checkbox &&
+							<Checkbox
+								style={styles.checkbox}
+								color={item.checked ? "#04D300DE" : "#EFEEEE"}
+								value={item.checked}
+								onChange={handlePressCheckbox}
+							/>
+						}
+						<Text style={styles.label}>{item.name}</Text>
+					</View>
+					<View>
+						<Text style={styles.parent}>{item.parent?.name ? `Aisle - ${item.parent?.name}` : ""}</Text>
+					</View>
 				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	)
 }
 

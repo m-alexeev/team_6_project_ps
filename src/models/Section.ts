@@ -8,7 +8,7 @@ abstract class Section{
         let cur = this as Section;
         while(cur.parent != null){
             cur = cur.parent;
-            if (cur == section){
+            if (cur.name === section.name){
                 return true;
             }
         }

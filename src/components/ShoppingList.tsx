@@ -6,31 +6,35 @@ import { Item } from "../models/Item";
 import ItemSeparatorView from "./ItemSeparator";
 
 interface Props {
-
+    selectedItems: Item[]
 }
 
-const ShoppingList: React.FC<Props> = () => {
-    Instantiator.createStoreStructure()
-    const items = Instantiator.items;
-
+const ShoppingList: React.FC<Props> = ({ selectedItems }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList<Item> 
-                data={items}
-                renderItem={({ item }) => 
-                    <ShoppingListItem item={item} />} keyExtractor={item => `${item.name} ${item.parent?.name}`} 
-                ItemSeparatorComponent={ItemSeparatorView}
+            {selectedItems.length > 0 ?
+                <FlatList<Item>
+                    data={selectedItems}
+                    renderItem={({ item }) =>
+                        <ShoppingListItem item={item} />} keyExtractor={item => `${item.name} ${item.parent?.name}`}
+                    ItemSeparatorComponent={ItemSeparatorView}
                 />
+                :
+                <Text style={styles.noItems}>Add items to shopping list</Text>
+            }
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1 ,
+    container: {
+        flex: 1,
         alignSelf: "stretch"
     },
-    
+    noItems:{
+        textAlign:'center',
+    }
+
 })
 
 export default ShoppingList;

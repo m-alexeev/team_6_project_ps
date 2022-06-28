@@ -23,8 +23,8 @@ class ConcreteSection extends Section{
         let unordered: Array<Item> = [];
         let ordered: Array<Item> = [];
 
-        for (let i = 0; i < unordered.length; i++){
-            const item = unordered[i]
+        for (let i = 0; i < unorderedList.length; i++){
+            const item = unorderedList[i]
             if (item.isDescendantOf(this)){
                 ordered.push(item)
             }else{
@@ -34,13 +34,12 @@ class ConcreteSection extends Section{
 
         let subsectionUnordered = ordered;
         ordered = [];
-        for (let i = 0; i<this.subsections.length; i++){
+        for (let i = 0; i < this.subsections.length; i++){
             const subsection = this.subsections[i]
             let listPair = subsection.sortItemList(subsectionUnordered)
-            ordered.concat(listPair[0])
+            ordered = ordered.concat(listPair[0])
             subsectionUnordered = listPair[1]
         }
-
         return [ordered, unordered]
     }
 }

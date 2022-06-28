@@ -12,12 +12,8 @@ class Item extends Section{
     
     sortItemList(unorderedList: Item[]): [Item[], Item[]] {
         let ordered: Item[] = [];
-
-        if (this in unorderedList){
+        if (unorderedList.filter((item) => item.name === this.name)){
             ordered.push(this)
-            unorderedList.filter((val) => {
-                return val != this
-            })
         }
         return [ordered, unorderedList]
     }

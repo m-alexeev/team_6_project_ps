@@ -6,6 +6,7 @@ import { Store} from "./Store";
 class Instantiator{
     static mainSections: Section[] = []
     static subSections: Section[] = []
+    static store: Store | undefined = undefined
     static items: Item[] = []
     
     static createItemInSubsection(section: ConcreteSection, subSectionIdx: number, itemName: string){
@@ -20,7 +21,7 @@ class Instantiator{
         this.items.push(item)
     }
 
-    static createStoreStructure(): Store{
+    static createStoreStructure(){
         const store = new Store("Walmart");
 
         const mainSectionNames: string[] = ["Dairy", "Produce", "Meat", "Frozen", "Bakery"] 
@@ -73,7 +74,8 @@ class Instantiator{
         this.createItem(bakery, "Bread")
         this.createItem(bakery, "Cake")
         this.createItem(bakery, "Muffins")
-        return store;
+
+        this.store = store;
     }
 }
 
