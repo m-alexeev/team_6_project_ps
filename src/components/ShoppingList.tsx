@@ -3,6 +3,8 @@ import { Instantiator } from "../models/Instantiator";
 import { StyleSheet, Text, SafeAreaView, FlatList } from 'react-native';
 import ShoppingListItem from "./ShoppingListItem";
 import { Item } from "../models/Item";
+import ItemSeparatorView from "./ItemSeparator";
+
 interface Props {
 
 }
@@ -17,6 +19,7 @@ const ShoppingList: React.FC<Props> = () => {
                 data={items}
                 renderItem={({ item }) => 
                     <ShoppingListItem item={item} />} keyExtractor={item => `${item.name} ${item.parent?.name}`} 
+                ItemSeparatorComponent={ItemSeparatorView}
                 />
         </SafeAreaView>
     )
