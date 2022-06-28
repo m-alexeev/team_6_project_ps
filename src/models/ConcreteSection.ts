@@ -20,6 +20,8 @@ class ConcreteSection extends Section{
     }
 
     sortItemList(unorderedList: Array<Item>): [Array<Item>, Array<Item>] {
+        // console.log(`Concrete Section input: ${this.name}`)
+        // console.log(unorderedList)
         let unordered: Array<Item> = [];
         let ordered: Array<Item> = [];
 
@@ -39,7 +41,12 @@ class ConcreteSection extends Section{
             let listPair = subsection.sortItemList(subsectionUnordered)
             ordered = ordered.concat(listPair[0])
             subsectionUnordered = listPair[1]
+            if (subsectionUnordered.length == 0) {
+                break;
+            }
         }
+        // console.log(`Concrete Section return: ${this.name}`)
+        // console.log([ordered, unordered])
         return [ordered, unordered]
     }
 }
