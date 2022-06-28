@@ -50,6 +50,7 @@ const ProductCatalogue: React.FC<Props> = () => {
 			if (newSeletedItemsSorted)
 				setSelectedItems(newSeletedItemsSorted);
 		}
+		setShowSearch(false)
 	}
 
 
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
 	close: {
 		alignSelf: 'center',
 		marginStart: 5,
+		paddingTop: 30,
 		color: "#306fd4",
 	},
 	listHeader:{
