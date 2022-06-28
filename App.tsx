@@ -1,16 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
+import CheckBox from '@react-native-community/checkbox';
 import { NativeBaseProvider } from 'native-base';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import ShoppingList from './src/views/ShoppingList';
+import ProductCatalogue from './src/components/ProductCatalogue';
+import ShoppingList from './src/components/ShoppingList';
 
 export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-        <ShoppingList></ShoppingList>
+        {/* <ShoppingList></ShoppingList> */}
+        <ProductCatalogue/>
       </View>
     </NativeBaseProvider>
   );
