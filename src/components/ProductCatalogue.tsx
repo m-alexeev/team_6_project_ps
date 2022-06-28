@@ -1,5 +1,5 @@
 import { FlatList } from "native-base";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
 import { Instantiator } from "../models/Instantiator";
 import { Item } from "../models/Item";
@@ -13,11 +13,9 @@ interface Props {
 
 const ProductCatalogue: React.FC<Props> = () => {
 
-	Instantiator.createStoreStructure();
 	const items = Instantiator.items;
-	const [filteredItems, setFilteredItems] = useState<Item[]>(items);
+	const [filteredItems, setFilteredItems] = useState<Item[]>([...items]);
 	const [search, setSearch] = useState("");
-
 
 	const searchFilterFunction = (query: string) => {
 		if (query) {
@@ -27,17 +25,17 @@ const ProductCatalogue: React.FC<Props> = () => {
 					: ''.toUpperCase();
 
 				const textData = query.toUpperCase();
-				return itemData.startsWith(textData);
+				return itemData.indexOf(textData) > -1;
 			});
-			setFilteredItems(newData);
-			setSearch(query);
+			setFilteredItems([...newData]);
 		}
 		else {
-			setFilteredItems(items);
-			setSearch(query);
+			setFilteredItems([...items]);
 		}
+		console.log(items);
+		console.log(Instantiator.items);
+		setSearch(query);
 	}
-
 
 	return (
 		<SafeAreaView style={{ flex: 1, alignSelf:"stretch"}}>
