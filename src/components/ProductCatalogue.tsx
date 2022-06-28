@@ -14,17 +14,18 @@ interface Props {
 const ProductCatalogue: React.FC<Props> = () => {
 
 	Instantiator.createStoreStructure();
-	const [items, setItems] = useState(Instantiator.items);
+	const items = Instantiator.items;
 	const [filteredItems, setFilteredItems] = useState<Item[]>(items);
 	const [search, setSearch] = useState("");
 
 
 	const searchFilterFunction = (query: string) => {
 		if (query) {
-			const newData = items.filter((item) => {
+			const newData = items.filter((item: Item) => {
 				const itemData = item.name
 					? item.name.toUpperCase()
 					: ''.toUpperCase();
+
 				const textData = query.toUpperCase();
 				return itemData.startsWith(textData);
 			});
@@ -39,7 +40,7 @@ const ProductCatalogue: React.FC<Props> = () => {
 
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex: 1, alignSelf:"stretch"}}>
 			<View style={styles.container}>
 				{/* Search bar */}
 				<TextInput
@@ -54,7 +55,9 @@ const ProductCatalogue: React.FC<Props> = () => {
 					data={filteredItems}
 					ItemSeparatorComponent={ItemSeparatorView}
 					renderItem={({ item }) =>
-						<ShoppingListItem item={item} />} keyExtractor={item => `${item.name} ${item.parent?.name}`}
+						<ShoppingListItem item={item} />
+					}
+					keyExtractor={item => `${item.name} ${item.parent?.name}`}
 				/>
 			</View>
 		</SafeAreaView>
@@ -63,15 +66,15 @@ const ProductCatalogue: React.FC<Props> = () => {
 
 const styles = StyleSheet.create({
 	container: {
-
+		alignSelf:"stretch"
 	},
 	textInputStyle: {
-    height: 40,
-    borderWidth: 1,
-    paddingLeft: 20,
-    margin: 5,
-    borderColor: '#009688',
-    backgroundColor: '#FFFFFF',
+		height: 40,
+		borderWidth: 1,
+		paddingLeft: 20,
+		margin: 5,
+		borderColor: '#009688',
+		backgroundColor: '#FFFFFF',
 	},
 	list: {
 
