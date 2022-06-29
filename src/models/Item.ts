@@ -1,6 +1,7 @@
 import { Section } from "./Section";
 
 class Item extends Section{
+    checked : boolean = false;
     
     constructor(name: string, parent: Section){
         super();

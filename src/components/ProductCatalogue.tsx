@@ -6,6 +6,7 @@ import { Instantiator } from "../models/Instantiator";
 import { Item } from "../models/Item";
 import ItemSeparatorView from "./ItemSeparator";
 import ShoppingListItem from "./ShoppingListItem";
+import ShoppingListTopItem from "./ShoppingListTopItem";
 
 
 interface Props {
@@ -15,10 +16,12 @@ interface Props {
 const ProductCatalogue: React.FC<Props> = () => {
 
 	const items = Instantiator.items;
-	const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 	const [showSearch, setShowSearch] = useState(false);
 	const [filteredItems, setFilteredItems] = useState<Item[]>([...items]);
 	const [search, setSearch] = useState("");
+
+	const [topItem, setTopItem] = useState<Item|undefined>(undefined)
+	const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
 	const searchFilterFunction = (query: string) => {
 		if (query) {
@@ -38,21 +41,32 @@ const ProductCatalogue: React.FC<Props> = () => {
 		setSearch(query);
 	}
 
-	const handlePress = (id: string) => {
+	const handlePressSearchItem = (id: string) => {
 		const item = items.find(item => item.name === id)
 		if (item && !selectedItems.includes(item)){
 			const newSeletedItems = [...selectedItems, item];
 			const newSeletedItemsSorted = Instantiator.store?.section.sortItemList(newSeletedItems)[0];
-			if (newSeletedItemsSorted)
+			if (newSeletedItemsSorted) {
 				setSelectedItems(newSeletedItemsSorted);
+				setTopItem(newSeletedItemsSorted.find((item)=>!item.checked));
+			}
 		}
 		searchFilterFunction("");
 		setShowSearch(false);
 	}
 
+	const handlePressCheckbox = (item: Item) => {
+		const index = selectedItems.map(item => item.name).indexOf(item.name);
+		const newSelectedItems = [...selectedItems];
+		newSelectedItems[index].checked = !newSelectedItems[index].checked;
+		const newTopItem = newSelectedItems.find((item)=>!item.checked);
+		setTopItem(newTopItem);
+		setSelectedItems(newSelectedItems);
+	}
 
-	const handlePressCheckbox = (event: CheckboxEvent) => {
-		console.log(event.target.value);
+	const handlePressTopItem = () => {
+		const item = selectedItems.filter((item)=>!item.checked)[0];
+		handlePressCheckbox(item);
 	}
 
 	return (
@@ -79,21 +93,39 @@ const ProductCatalogue: React.FC<Props> = () => {
 						data={filteredItems}
 						ItemSeparatorComponent={ItemSeparatorView}
 						renderItem={({ item }) =>
-							<ShoppingListItem item={item} handlePress={handlePress} handlePressCheckbox={handlePressCheckbox}/>
+							<ShoppingListItem item={item} handlePress={handlePressSearchItem}/>
 						}
-						keyExtractor={item => `${item.name}`}
+						keyExtractor={item => item.name}
 					/>
 				}
 				<Text style={styles.listHeader}>Your Shopping List</Text>
 				{/* Shopping List */}
+				{ topItem &&
+						<ShoppingListTopItem item={topItem} handlePress={handlePressTopItem}></ShoppingListTopItem>
+				}
 				<FlatList<Item>
-					data={selectedItems}
+					data={selectedItems.filter((item)=>!item.checked).slice(1)}
 					ItemSeparatorComponent={ItemSeparatorView}
 					renderItem={({ item }) =>
-						<ShoppingListItem item={item} checkbox handlePress={handlePress} handlePressCheckbox={handlePressCheckbox}/>
+						<ShoppingListItem item={item} checkbox 
+						handlePress={()=>{}} 
+						handlePressCheckbox={(e) => handlePressCheckbox(item)}/>
+					}
+					keyExtractor={item => item.name}
+				/>
+					
+					
+				<Text style={styles.listHeader}>Finished</Text>
+				<FlatList<Item>
+					data={selectedItems.filter((item)=>item.checked)}
+					ItemSeparatorComponent={ItemSeparatorView}
+					renderItem={({ item }) =>
+						<ShoppingListItem item={item} checkbox checked
+						handlePress={()=>{}} 
+						handlePressCheckbox={(e) => handlePressCheckbox(item)}/>
 					}
 					keyExtractor={item => `${item.name}`}
-					/>
+				/>
 			</View>	
 		</SafeAreaView>
 	);

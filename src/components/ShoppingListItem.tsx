@@ -3,17 +3,19 @@ import { Text, View } from "native-base";
 import Checkbox, { CheckboxEvent } from "expo-checkbox";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Item } from "../models/Item";
+import { findLastValidBreakpoint } from "native-base/lib/typescript/theme/tools";
 
 interface Props {
 	item: Item;
-	checkbox?: boolean;
 	handlePress: (id?: string) => void;
-	handlePressCheckbox: (event: CheckboxEvent) => void;
+	checkbox?: boolean;
+	checked?: boolean;
+	handlePressCheckbox?: (event: CheckboxEvent) => void;
 }
 
-const ShoppingListItem: React.FC<Props> = ({ item, checkbox, handlePressCheckbox, handlePress }) => {
+const ShoppingListItem: React.FC<Props> = ({ item, checkbox, checked, handlePressCheckbox, handlePress }) => {
 	
-	const [checked, setChecked] = useState(false);
+	const [checkedState, setCheckedState] = useState(checked);
 
 	return (
 		<TouchableOpacity onPress={()=>handlePress(item.name)}>
@@ -24,10 +26,10 @@ const ShoppingListItem: React.FC<Props> = ({ item, checkbox, handlePressCheckbox
 						{checkbox &&
 							<Checkbox
 								style={styles.checkbox}
-								color={checked ? "#04D300DE" : "#EFEEEE"}
-								value={checked}
+								color={checkedState ? "#04D300DE" : "#EFEEEE"}
+								value={checkedState}
 								onChange={handlePressCheckbox}
-								onValueChange={setChecked}
+								onValueChange={setCheckedState}
 							/>
 						}
 						<Text style={styles.label}>{item.name}</Text>
