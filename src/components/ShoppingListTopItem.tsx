@@ -49,9 +49,7 @@ const styles = StyleSheet.create({
 	checkboxContainer: {
 		alignSelf: "stretch",
 		flexDirection: "row",
-		paddingVertical: 15,
-		marginLeft: 20,
-		marginEnd: 30,
+		padding: 15,
 		justifyContent: 'space-between',
 		flex: 1,
 	},
