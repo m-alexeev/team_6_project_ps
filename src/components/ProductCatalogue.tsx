@@ -5,6 +5,7 @@ import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Instantiator } from "../models/Instantiator";
 import { Item } from "../models/Item";
 import ItemSeparatorView from "./ItemSeparator";
+import ProgressBar from "./ProgressBar";
 import ShoppingListItem from "./ShoppingListItem";
 import ShoppingListTopItem from "./ShoppingListTopItem";
 
@@ -98,10 +99,13 @@ const ProductCatalogue: React.FC<Props> = () => {
 						keyExtractor={item => item.name}
 					/>
 				}
+				{selectedItems.length > 0 &&
+					<ProgressBar total={selectedItems.length} completed={selectedItems.filter((item)=>item.checked).length}/>
+				}
 				<Text style={styles.listHeader}>Your Shopping List</Text>
 				{/* Shopping List */}
 				{ topItem &&
-						<ShoppingListTopItem item={topItem} handlePress={handlePressTopItem}></ShoppingListTopItem>
+					<ShoppingListTopItem item={topItem} handlePress={handlePressTopItem}></ShoppingListTopItem>
 				}
 				<FlatList<Item>
 					data={selectedItems.filter((item)=>!item.checked).slice(1)}
