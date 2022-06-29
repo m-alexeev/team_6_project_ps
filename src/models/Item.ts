@@ -22,6 +22,18 @@ class Item extends Section{
         // console.log([ordered, unorderedList])
         return [ordered, unorderedList]
     }
+
+    getAisle(): string {
+        var aisle = [];
+        var parent = this.parent;
+        while(parent){
+            aisle.unshift(parent.name);
+            parent = parent.parent;
+        } 
+        aisle.shift();
+        const aislePath = aisle.reduce((prev, cur) =>  `${prev} - ${cur}`)
+        return aislePath ? aislePath : ""
+    }
     
 }
 

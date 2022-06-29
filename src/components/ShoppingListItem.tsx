@@ -35,7 +35,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, checkbox, checked, handlePres
 						<Text style={styles.label}>{item.name}</Text>
 					</View>
 					<View>
-						<Text style={styles.parent}>{item.parent?.name ? `Aisle - ${item.parent?.name}` : ""}</Text>
+						<Text style={styles.parent}>{item.getAisle()}</Text>
 					</View>
 				</View>
 			</View>

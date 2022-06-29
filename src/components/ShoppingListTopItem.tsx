@@ -24,7 +24,7 @@ const ShoppingListTopItem: React.FC<Props> = ({ item, handlePress }) => {
 					</View>
 					<View style={styles.right}>
 						<Text style={styles.label}>{item.name}</Text>
-						<Text style={styles.parent}>{item.parent?.name ? `Aisle - ${item.parent?.name}` : ""}</Text>
+						<Text style={styles.parent}>{item.getAisle()}</Text>
 					</View>
 				</View>
 			</View>
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		height: 150,
+		marginHorizontal: 15,
+		marginTop: 10,
 		alignSelf: "stretch",
 		alignItems: "center",
     borderRadius: 15,

@@ -124,7 +124,7 @@ const ProductCatalogue: React.FC<Props> = () => {
 						handlePress={()=>{}} 
 						handlePressCheckbox={(e) => handlePressCheckbox(item)}/>
 					}
-					keyExtractor={item => `${item.name}`}
+					keyExtractor={item => item.name}
 				/>
 			</View>	
 		</SafeAreaView>
