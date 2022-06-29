@@ -115,7 +115,7 @@ const ProductCatalogue: React.FC<Props> = () => {
 				/>
 					
 					
-				<Text style={styles.listHeader}>Finished</Text>
+				<Text style={styles.listSecondaryHeader}>Finished</Text>
 				<FlatList<Item>
 					data={selectedItems.filter((item)=>item.checked)}
 					ItemSeparatorComponent={ItemSeparatorView}
@@ -147,13 +147,6 @@ const styles = StyleSheet.create({
 		paddingTop: 30,
 		color: "#306fd4",
 	},
-	listHeader:{
-		marginHorizontal: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		color: '#444',
-		borderBottomWidth: 0.5
-	},
 	textInputStyle: {
 		flexGrow: 1,
 		height: 40,
@@ -175,6 +168,19 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 0, height: 5 },
 		shadowOpacity: 0.75,
 		shadowRadius: 5
+	},
+	listHeader:{
+		marginHorizontal: 20,
+		fontSize: 24,
+		fontWeight: "bold",
+		color: '#444',
+		borderBottomWidth: 1
+	},
+	listSecondaryHeader:{
+		marginHorizontal: 20,
+		fontSize: 20,
+		color: '#5b5b5b',
+		borderBottomWidth: 0.5
 	},
 })
 
