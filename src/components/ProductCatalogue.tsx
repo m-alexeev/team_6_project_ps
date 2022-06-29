@@ -103,6 +103,9 @@ const ProductCatalogue: React.FC<Props> = () => {
 					<ProgressBar total={selectedItems.length} completed={selectedItems.filter((item)=>item.checked).length}/>
 				}
 				<Text style={styles.listHeader}>Your Shopping List</Text>
+				{selectedItems.length == 0 &&
+					<Text style={{textAlign: 'center', marginTop: 10, fontWeight: "500"}}>Your Shopping list is empty</Text>
+				}
 				{/* Shopping List */}
 				{ topItem &&
 					<ShoppingListTopItem item={topItem} handlePress={handlePressTopItem}></ShoppingListTopItem>
@@ -118,8 +121,9 @@ const ProductCatalogue: React.FC<Props> = () => {
 					keyExtractor={item => item.name}
 				/>
 					
-					
-				<Text style={styles.listSecondaryHeader}>Finished</Text>
+				{selectedItems.filter((item)=>item.checked).length > 0 &&
+					<Text style={styles.listSecondaryHeader}>Finished</Text>
+				}					
 				<FlatList<Item>
 					data={selectedItems.filter((item)=>item.checked)}
 					ItemSeparatorComponent={ItemSeparatorView}
